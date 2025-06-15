@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pretium/components/custom_text_field.dart';
+import 'package:pretium/screens/dashboard_screen.dart';
 import 'package:pretium/screens/sign_up_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -106,7 +107,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   width: double.infinity,
                   child: OutlinedButton(
-                    onPressed: (){}, 
+                    onPressed: (){
+                      Navigator.pushReplacement(
+                        context, 
+                        MaterialPageRoute(builder: (context)=>const DashboardScreen())
+                      );
+                    }, 
                     style: Theme.of(context).elevatedButtonTheme.style,
                     child: Text(
                       'Login',
