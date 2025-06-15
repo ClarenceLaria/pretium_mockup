@@ -10,6 +10,29 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final controller = PageController();
+  int currentPage = 0;
+  String buttontext = "";
+
+  final List<Map<String, String>> onboardingPages = [
+    {
+      "title": "Direct Pay",
+      "subtitle": "Pay with crypto across Africa effortlessly",
+      "buttontext": "Next",
+      "icon": "assets/icons/credit-card.png",
+    },
+    {
+      "title": "Accept Payments",
+      "subtitle": "Accept stablecoin payments hassle-free",
+      "buttontext": "Next",
+      "icon": "assets/icons/waller_1.png",
+    },
+    {
+      "title": "Pay Bills",
+      "subtitle": "Pay for utility services and earn rewards",
+      "buttontext": "Get Started",
+      "icon": "assets/icons/invoice.png",
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -24,46 +47,58 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
           ),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(  
-                    borderRadius: BorderRadius.circular(36),
-                    color: Theme.of(context).primaryColor.withAlpha(100)
-                  ),
-                  padding: EdgeInsets.all(10),
-                  child: Image.asset(
-                    'assets/icons/wallet_1/png',
-                    width: 60,
-                    height: 60,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
-                Text(
-                  'Accept Payments',
-                  style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyLarge?.color,
-                    fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
-                  ),
-                ),
-                Text(
-                  'Accept stablecoin payments hassle-free',
-                  style: TextStyle(
-                    color: Theme.of(context).textTheme.bodySmall?.color,
-                    fontSize: Theme.of(context).textTheme.bodySmall?.fontSize,
-                  ),
-                )
-              ],
+            child: PageView.builder(
+              controller: controller,
+              itemCount: onboardingPages.length,
+              onPageChanged: (index) {
+                setState(() {
+                  currentPage = index;
+                  buttontext = onboardingPages[index][buttontext]!;
+                });
+              },
+              itemBuilder: (context, index) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(  
+                        borderRadius: BorderRadius.circular(36),
+                        color: Theme.of(context).primaryColor.withAlpha(100)
+                      ),
+                      padding: EdgeInsets.all(10),
+                      child: Image.asset(
+                        onboardingPages[index]['icon']!,
+                        width: 60,
+                        height: 60,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                    ),
+                    Text(
+                      onboardingPages[index]['title']!,
+                      style: TextStyle(
+                        color: Theme.of(context).textTheme.bodyLarge?.color,
+                        fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
+                      ),
+                    ),
+                    Text(
+                      onboardingPages[index]['subtitle']!,
+                      style: TextStyle(
+                        color: Theme.of(context).textTheme.bodySmall?.color,
+                        fontSize: Theme.of(context).textTheme.bodySmall?.fontSize,
+                      ),
+                    )
+                  ],
+                );
+              }
             ),
           ),
           // smooth screen indicator
           const SizedBox(height: 16,),
           SmoothPageIndicator(
             controller: controller, // You can use a PageController to control the page indicator
-            count: 3, // Number of onboarding pages
+            count: onboardingPages.length, // Number of onboarding pages
             effect: ExpandingDotsEffect(
               dotColor: Colors.grey,
               activeDotColor: Theme.of(context).primaryColor,
@@ -77,7 +112,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           ElevatedButton(
             onPressed: (){}, 
             child: Text(
-              'Next',
+              buttontext,
             )
           ),
         ],
