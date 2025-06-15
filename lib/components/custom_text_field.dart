@@ -30,11 +30,17 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return TextField(
       controller: widget.controller,
+      style: TextStyle(
+        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
+      ),
       obscureText: widget.isPassword ? isObscured : false,
       keyboardType: widget.keyboardType,
       decoration: InputDecoration(
         prefixIcon: widget.prefixIcon,
         hintText: widget.hintText,
+        labelStyle: TextStyle(
+          fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
+        ),
         labelText: widget.labelText,
         suffixIcon: widget.isPassword ? IconButton(
           onPressed: (){
@@ -45,9 +51,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
           icon: isObscured ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
         ) : null,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.0),
+          borderRadius: BorderRadius.circular(8.0),
         ),
         focusColor: Theme.of(context).primaryColor,
+        hoverColor: Theme.of(context).primaryColor,
       ),
     );
   }

@@ -22,16 +22,17 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 50),
             child: Column(
               children: [
                 Container(
-                  height: 80,
-                  width: 80,
+                  height: 60,
+                  width: 60,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(12.0)),
                     color: Theme.of(context).primaryColor.withAlpha(100),
                   ),
+                  margin: EdgeInsets.only(top: 25),
                   padding: EdgeInsets.all(10),
                   child: Image.asset(
                     'assets/icons/credit-card.png',
@@ -50,11 +51,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 Text(
                   'Sign in to continue',
                   style: TextStyle(
-                    fontSize: Theme.of(context).textTheme.bodySmall?.fontSize,
-                    color: Theme.of(context).textTheme.bodySmall?.color,
+                    fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
+                    color: Theme.of(context).textTheme.bodyMedium?.color,
                   ),
                 ),
-                const SizedBox(height: 25,),
+                const SizedBox(height: 50,),
                 CustomTextField(
                   controller: _emailController, 
                   hintText: 'Enter your email', 
@@ -70,14 +71,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   prefixIcon: Icon(Icons.lock_outline),
                   isPassword: true,
                 ),
-                const SizedBox(height: 25,),
+                const SizedBox(height: 40,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
                         Checkbox(
-                          value: isChecked, 
+                          value: false, 
                           onChanged: (value){}
                         ),
                         const SizedBox(width: 10,),
@@ -101,11 +102,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     )
                   ],
                 ),
-                const SizedBox(height: 25,),
+                const SizedBox(height: 45,),
                 SizedBox(
                   width: double.infinity,
                   child: OutlinedButton(
                     onPressed: (){}, 
+                    style: Theme.of(context).elevatedButtonTheme.style,
                     child: Text(
                       'Login',
                     )

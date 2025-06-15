@@ -23,9 +23,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                IconButton(
+                  onPressed: (){
+                    Navigator.pop(context);
+                  }, 
+                  icon: Icon(
+                    Icons.arrow_back, 
+                    // color:  Colors.black,
+                  ),
+                ),
+                const SizedBox(height: 25,),
                 Text(
                   'Create Account',
+                  textAlign: TextAlign.start,
                   style: TextStyle(
                     fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
                     color: Theme.of(context).textTheme.bodyLarge?.color,
@@ -35,8 +47,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Text(
                   'Simplify your crypto payments with us',
                   style: TextStyle(
-                    fontSize: Theme.of(context).textTheme.bodySmall?.fontSize,
-                    color: Theme.of(context).textTheme.bodySmall?.color,
+                    fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
+                    color: Theme.of(context).textTheme.bodyMedium?.color,
                   ),
                 ),
                 const SizedBox(height: 25,),
@@ -47,6 +59,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   prefixIcon: Icon(Icons.person_outline),
                   keyboardType: TextInputType.emailAddress,
                 ),
+                const SizedBox(height: 25,),
                 CustomTextField(
                   controller: _sNameController, 
                   hintText: 'Enter your last name', 
@@ -54,6 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   prefixIcon: Icon(Icons.person_outline),
                   keyboardType: TextInputType.emailAddress,
                 ),
+                const SizedBox(height: 25,),
                 CustomTextField(
                   controller: _emailController, 
                   hintText: 'Enter your email', 
@@ -80,7 +94,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Text(
                       'Accept Terms and Conditions',
                       style: TextStyle(
-                        fontSize: Theme.of(context).textTheme.bodySmall?.fontSize,
+                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
                         color: Theme.of(context).primaryColor,
                         decoration: TextDecoration.underline,
                       ),
@@ -92,6 +106,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   width: double.infinity,
                   child: OutlinedButton(
                     onPressed: (){}, 
+                    style: Theme.of(context).elevatedButtonTheme.style,
                     child: Text(
                       'Create Account',
                     )
