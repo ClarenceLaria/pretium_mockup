@@ -7,14 +7,14 @@ class AppTheme {
     primaryColor: Color.fromARGB(255,12,100,100),
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: AppBarTheme(
-      // backgroundColor: Colors.teal,
-      // foregroundColor: Colors.white,
+      backgroundColor: Color.fromARGB(255,12,100,100),
+      foregroundColor: Colors.white,
       elevation: 0,
     ),
     textTheme: TextTheme(
       bodyLarge: TextStyle(
-        fontSize: 16,
-        color: Colors.black87,
+        fontSize: 24,
+        color: Colors.black,
       ),
       bodyMedium: TextStyle(
         fontSize: 14,
@@ -49,8 +49,8 @@ class AppTheme {
     ),  
     textTheme: TextTheme(
       bodyLarge: TextStyle(
-        fontSize: 16,
-        color: Colors.white70,
+        fontSize: 24,
+        color: Colors.white,
       ),
       bodyMedium: TextStyle(
         fontSize: 14,
@@ -61,5 +61,15 @@ class AppTheme {
         color: Colors.white38,
       ),
     ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color.fromARGB(255,12,100,100),
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+      ),
+    )
   );
 }
