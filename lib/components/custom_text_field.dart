@@ -46,7 +46,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ) : null,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
-        )
+        ),
+        focusColor: Theme.of(context).primaryColor,
       ),
     );
   }
