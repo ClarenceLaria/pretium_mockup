@@ -173,7 +173,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             
                 //Financial Services
                 Container(
-                  height: 200,
+                  height: 210,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: Theme.of(context).brightness == Brightness.light ? Color.fromARGB(255, 245, 245,245) : Colors.grey[600],

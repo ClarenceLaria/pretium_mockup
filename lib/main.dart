@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:pretium/core/theme.dart';
 import 'package:pretium/screens/onboarding_screen.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+
+  FlutterNativeSplashScreen.preserve(widgetsBinding: WidgetsFlutterBinding.ensureInitialized());
+
+  await Future.delayed(const Duration(seconds: 3));
+
+  FlutterNativeSplashScreen.remove();
   runApp(const MyApp());
 }
 

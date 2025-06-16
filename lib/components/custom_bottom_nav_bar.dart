@@ -63,7 +63,7 @@ class CustomBottomNavBar extends StatelessWidget {
 
         // Floating center button
         Positioned(
-          bottom: 20, 
+          bottom: 10, 
           child: GestureDetector(
             onTap: () => onTap(1),
             child: Container(
