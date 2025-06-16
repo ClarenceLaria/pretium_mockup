@@ -46,7 +46,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 245, 245, 245),
         title: Text(
           'Hello, Clarence 👋',
           style: TextStyle(
@@ -177,9 +176,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   height: 200,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).brightness == Brightness.light ? Color.fromARGB(255, 245, 245,245) : Colors.grey[600],
                     borderRadius: BorderRadius.circular(12),
                   ),
+                  padding: EdgeInsets.symmetric(horizontal: 15),
                   child: Column(
                     children: [
                       Row(
@@ -189,12 +189,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             style: TextStyle(
                               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white,
                             ),
                           ),
                           Spacer(),
                           //Selector dropdown for countries
                           DropdownButton<String>(
+                            iconEnabledColor: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white,
+                            dropdownColor: Theme.of(context).brightness == Brightness.light ? Colors.white : Colors.grey[600],
                             value: 'Kenya',
                             items: <String>['Kenya', 'Uganda', 'Tanzania'].map((String value) {
                               return DropdownMenuItem<String>(
@@ -212,45 +214,48 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 10,),
                       //get three items per row in the grid
-                      GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          childAspectRatio: 1.0,
-                          crossAxisSpacing: 10.0,
-                          mainAxisSpacing: 10.0,
-                        ),
-                        itemBuilder: (context, index) {
-                          return Column(
-                            children: [
-                              Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).primaryColor.withAlpha(100),
-                                  borderRadius: BorderRadius.circular(25),
-                                ),
-                                padding: EdgeInsets.all(10),
-                                child: Image.asset(
-                                  financialServices[index]['icon']!,
+                      Expanded(
+                        child: GridView.builder(
+                          itemCount: financialServices.length,
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            crossAxisSpacing: 30.0,
+                            mainAxisSpacing: 0,
+                          ),
+                          itemBuilder: (context, index) {
+                            return Column(
+                              children: [
+                                Container(
                                   height: 40,
                                   width: 40,
-                                  color: Theme.of(context).primaryColor,
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context).primaryColor.withAlpha(100),
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                  padding: EdgeInsets.all(10),
+                                  child: Image.asset(
+                                    financialServices[index]['icon']!,
+                                    height: 40,
+                                    width: 40,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 10,),
-                              Text(
-                                financialServices[index]['title']!,
-                                style: TextStyle(
-                                  fontSize: Theme.of(context).textTheme.bodySmall?.fontSize,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )
-                            ],
-                          );
-                        },
+                                const SizedBox(height: 5,),
+                                Text(
+                                  financialServices[index]['title']!,
+                                  style: TextStyle(
+                                    fontSize: Theme.of(context).textTheme.bodySmall?.fontSize,
+                                    color: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
+                              ],
+                            );
+                          },
+                        ),
                       ),
                     ],
                   ),
@@ -265,7 +270,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         Text(
                           'Recent transactions',
                           style: TextStyle(
-                            color: Colors.black,
+                            color: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
                           ),
@@ -293,6 +298,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           Image.asset(
                             'assets/icons/invoice.png',
                             color: Colors.grey,
+                            height: 60,
+                            width: 60,
                           ),
                           const SizedBox(height: 25,),
                           Text(
