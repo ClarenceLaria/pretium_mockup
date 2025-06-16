@@ -6,11 +6,11 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
 
-  FlutterNativeSplashScreen.preserve(widgetsBinding: WidgetsFlutterBinding.ensureInitialized());
+  FlutterNativeSplash.preserve(widgetsBinding: WidgetsFlutterBinding.ensureInitialized()); // Preserve the splash screen while the app is initializing
 
-  await Future.delayed(const Duration(seconds: 3));
+  await Future.delayed(const Duration(seconds: 3)); // Simulate a delay for the splash screen
 
-  FlutterNativeSplashScreen.remove();
+  FlutterNativeSplash.remove(); // Remove the splash screen after a delay
   runApp(const MyApp());
 }
 
